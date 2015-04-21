@@ -1,0 +1,31 @@
+<!-- side menu -->
+<div ng-controller="DinnerCtrl">
+	<div id="exampleView">
+		<div id="sideMenu">
+			<div class="col-md-2">
+			<h3>My planner</h3>
+      		<div>
+          	People: <input type="number" ng-model="numberOfGuests" ng-change="setNumberOfGuest(numberOfGuests)" min="1"/>
+
+			      Total number of guest: {{numberOfGuests}}
+
+      		</div>
+      		<div style="width:100%;padding:5% 0 5% 0;">
+ 	  			<div style="width:80%;float:left;background-color:#efefef;">Dish Name</div>
+ 	  			<div style="width:20%;float:right;background-color:#efefef;">Cost</div>
+	      	</div>
+
+		  	<div style="width:100%;">
+				<div style="width:80%;float:left;" ng-model="menuNames" ng-change="menuNames">{{menuNames}}</div>
+    			<div style="width:20%;float:right;" ng-model="menuPrice" ng-change="menuPrice">{{menuPrice}}</div>
+		  	</div>
+		  	<br/><br/>
+			
+			<div style="padding:5% 0 0 0;">
+				<p align="right" ng-model="fullPrice" ng-change="fullPrice" >SEK {{fullPrice}}</p>
+		  	</div>
+		  	<center>
+		  		<a href="#/confirm"><button class='btn btn-default' id='confirm' type='submit'>Confirm Dinner</button></a>
+		  	</center>
+  		</div>
+  	</div>

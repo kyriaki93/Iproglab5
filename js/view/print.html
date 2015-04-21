@@ -1,0 +1,28 @@
+<ng-include src="'js/view/header.html'" ></ng-include>
+
+<div class="row" ng-controller="DinnerCtrl" ><div class="col-md-12">
+	<center>
+		<div>
+		<b><h3>My Dinner: {{numberOfGuests}} people</h3></b>
+        <a href="#/confirm"><button class="btn btn-default" id="goBackBtn" type="submit">Go back and edit dinner</button></a>
+        </div>
+    </center>
+</div>
+
+<div class="row">					
+	<div class='col-md-12'>
+		<div class='col-md-2' style='margin: 2% 2% 2% 2%'>
+			<img src=images/"+dish.image+" width=100%>
+		</div>
+		<div class='col-md-3'>
+			<h2>"+ dish.name+ "</h2>
+			<br/>
+			<p>"+dish.description+"</p>
+		</div>
+		<div class='col-md-4'>
+			<h2>Preperation</h2>
+			<br>
+			<p>"+ dish.description +"</p>
+		</div>
+	</div>	
+</div>

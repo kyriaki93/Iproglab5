@@ -16,15 +16,27 @@
     			</div>
 		    </div>
         {{status}}
-        <ul>
-          <li ng-repeat="dish in dishes">
-          <img ng-src="{{dish.ImageURL}}"/>
-          {{dish.Title}}
-          <a ng-href= "#/dish/{{dish.RecipeID}}">View more</a>
-          {{dish.Category}} {{dish.Subcategory}}
-          </li>
-          </ul>
 	 </div>
   </div>
+
+<div ng-repeat="dish in dishes">
+  <div class='col-md-2' style='margin:1% 1% 0 1%;' >
+    <br/>
+      <center>
+         <img width='100%'ng-src="{{dish.ImageURL}}"/>
+      </center>
+      <br/><br/>
+      <div id='foodhead'>
+        <center>
+          <h3>{{dish.Title}}</h3>
+        </center>
+      </div>
+      <center>
+      <a ng-href= "#/dish/{{dish.RecipeID}}"><button class="btn btn-default">View more</button></a>
+      <p>{{dish.Category}} {{dish.Subcategory}}</p> 
+    </center>
+    </div>
+  </div>
+
 
 

@@ -19,6 +19,7 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
     return numberOfGuest;
   }
 
+  //gets the name of dish in menu
   this.getNames = function() {
       var output ='';
 
@@ -29,13 +30,14 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
         selected = this.menu;
         for(var i=0; i < selected.length; i++){
           one = selected[i];
-          var dish = getDish(one);
+          var dish = this.getDish(one);
           output += '<span class="remove" id="'+ one +'"><input type="submit" value="x" class="btn btn-default btn-xs"></span> '+dish.name +'<br/>';
         }
       }
       return output;
   }
 
+  //gets the name of dish in menu
   this.fullPrice = function() {
       
       var output =0.00;
@@ -78,17 +80,11 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
   
 
 
-  // TODO in Lab 5: Add your model code from previous labs
-  // feel free to remove above example code
-  // you will need to modify the model (getDish and getAllDishes) 
-  // a bit to take the advantage of Angular resource service
-  // check lab 5 instructions for details
-
 
 
 
   this.dishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:20,api_key:'dvxrV2fipnzly1OxypUK685yXpq8i4v1'});
-  this.dish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvxrV2fipnzly1OxypUK685yXpq8i4v1'});
+  this.getDish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvxrV2fipnzly1OxypUK685yXpq8i4v1'});
 
   return this;
 

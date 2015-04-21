@@ -1,5 +1,37 @@
-<!-- We include the sidebar as it is shared across two screens. -->
-<ng-include src="'partials/dinner-sidebar.html'" ng-controller="DinnerCtrl"></ng-include>
+<ng-include src="'js/view/header.html'" ></ng-include>
+<ng-include src="'js/view/dinner-sidebar.html'"  ng-controller="DinnerCtrl" ></ng-include>
 
-<!-- TODO in Lab 5: Display the dish information including image, Description, 
-Instructions, Ingredients and total cost. -->
+<div class="row"  ng-model="dish" >	
+	<div class='col-md-5'>
+		<div>
+			<center>
+				<h2 >{{dish.Title}}</h2>
+			</center>
+		</div>
+		<img width='100%' ng-src="{{dish.ImageURL}}"/>
+		<br/><br/>
+		<p>{{dish.Instructions}}</p>
+		<div id='foodhead'>
+			<center>
+				<a href="#/create"><button class='btn btn-default' type='submit' style='margin:0% 0% 10% 0%;'>Back to Select Dish</button></a>
+			</center>
+		</div>
+	</div>
+ 	<div class='row'>
+	<div class='col-md-4'>
+		<center>
+		<h2>Ingredients</h2>
+		</center>
+		<br>
+		<div id='quantity' class='col-md-2'>"+ quantity +"</div>
+		<div id='amount' class='col-md-2'>"+ unit +"</div>
+		<div id='name' class='col-md-6'>"+ name +"</div>
+		<div id='price' class='col-md-2'>"+ price +"</div>
+	</div>
+	<div id='pending' class='col-md-3'>"+ pending +"<center>
+		<span class='confirmDishBtn' id='"+ getId+"'>
+			<input class='btn btn-default' type='submit' value='Confirm Dish' style='margin:6% 6% 6% 6%;'>
+		</span></center>
+	</div>
+</div>
+

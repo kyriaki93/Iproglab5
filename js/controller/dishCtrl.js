@@ -11,6 +11,15 @@ $scope.ready = false;
 	   		$scope.ready = true;
 	     	$scope.dish = data;
 
+	     	price = 0;
+	     	var ingredients = $scope.dish.Ingredients;
+    	 	
+    	 	for (i=0; i<ingredients.length; i++){
+      	  		var ingredient = ingredients[i];
+      			price += ingredient.Quantity;
+      			$scope.pending = (price); 
+			}
+
 	   	},function(data){
 
 	     	$scope.status = "There was an error";
@@ -18,5 +27,5 @@ $scope.ready = false;
 	}
 
 	$scope.dishInfo();
- 	
+	
 });

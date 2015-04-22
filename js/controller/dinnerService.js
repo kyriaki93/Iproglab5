@@ -78,6 +78,19 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
       return output;
   }
   
+    this.pending = function(dish) {
+      price = 0;
+      var dish = this.getDish(dish);
+      var ingredients = dish.Ingredients;
+
+    for (i=0; i<ingredients.length; i++){
+      var ingredient = Ingredients[i];
+      price += ingredient.Quantity;
+    }
+
+    return (price*this.getNumberOfGuests); 
+    
+  }
 
 
 

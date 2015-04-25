@@ -10,19 +10,19 @@
 </div>
 
 <div class="row">					
-	<div class='col-md-12'>
+	<div class='col-md-12'  ng-model="fullMenu" ng-repeat="dish in fullMenu">
 		<div class='col-md-2' style='margin: 2% 2% 2% 2%'>
-			<img src=images/"+dish.image+" width=100%>
+			<img width='100%' ng-src="{{dish.ImageURL}}"/>
 		</div>
 		<div class='col-md-3'>
-			<h2>"+ dish.name+ "</h2>
+			<h2>{{dish.Title}}</h2>
 			<br/>
-			<p>"+dish.description+"</p>
+			<p>{{dish.Description}}</p>
 		</div>
 		<div class='col-md-4'>
 			<h2>Preperation</h2>
 			<br>
-			<p>"+ dish.description +"</p>
+			<p>{{dish.Instructions}}</p>
 		</div>
 	</div>	
 </div>

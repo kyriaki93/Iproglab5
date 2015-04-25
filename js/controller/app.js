@@ -14,9 +14,11 @@ dinnerPlannerApp.config(['$routeProvider',
       }).
       when('/confirm', {
         templateUrl: 'js/view/overview.html',
+        controller: 'overviewCtrl'
       }).
       when('/print', {
         templateUrl: 'js/view/print.html',
+        controller: 'printCtrl'
       }).
      when('/dish/:dishId', {
         templateUrl: 'js/view/dish.html',

@@ -33,7 +33,7 @@
 	<br>
 	<div id='pending' class='col-md-3' ng-model="pending"><h4>SEK {{pending * getNumberOfGuests()}}</h4><center>
 		<span class='confirmDishBtn' id='"+ getId+"'>
-			<input class='btn btn-default' type='submit' value='Confirm Dish' style='margin:6% 6% 6% 6%;'>
+			<button class='btn btn-default' type='submit' style='margin:6% 6% 6% 6%;' ng-click="confirmDish()">Confirm Dish</button>
 		</span></center>
 	</div>
 </div>

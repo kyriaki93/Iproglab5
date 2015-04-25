@@ -1,5 +1,4 @@
-// Dinner controller that we use whenever we want to display detailed
-// information for one dish
+
 dinnerPlannerApp.controller('DishCtrl', function ($scope, $routeParams, Dinner) {
   
 $scope.dishId = $routeParams.dishId;
@@ -23,9 +22,15 @@ $scope.ready = false;
 	   	},function(data){
 
 	     	$scope.status = "There was an error";
+
 	   	});
 	}
 
 	$scope.dishInfo();
 	
+	 $scope.confirmDish = function(){
+
+	 	Dinner.dataMenu.push($scope.dish);
+
+	 }
 });

@@ -2,7 +2,14 @@
 dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
   
   var numberOfGuest = 2;
-  this.menu = [];
+  this.dataMenu = [];
+
+  if ($cookieStore.get("fullMenu") != null) {
+    var fullMenu = $cookieStore.get("fullMenu");
+  }
+  else{
+     var fullMenu = 'Pending';
+  }
 
   if ($cookieStore.get("numberOfGuests") == null) {
     var numberOfGuests = 2;
@@ -19,82 +26,24 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
     return numberOfGuest;
   }
 
-  //gets the name of dish in menu
-  this.getNames = function() {
-      var output ='';
+  this.removeDishFromMenu = function(id) {
 
-      if(this.menu == 0){
-        output += "Pending";
-      } 
-      if(this.menu != 0){
-        selected = this.menu;
-        for(var i=0; i < selected.length; i++){
-          one = selected[i];
-          var dish = this.getDish(one);
-          output += '<span class="remove" id="'+ one +'"><input type="submit" value="x" class="btn btn-default btn-xs"></span> '+dish.name +'<br/>';
-        }
+    // var currentRecipes = $cookieStore.get("fullMenu");
+    // for(recipeID in currentRecipes){
+    //   if(currentRecipes[recipeID] === id){
+    //     currentRecipes.splice(recipeID, 1);
+    //   }
+    // }
+    // $cookieStore.put("fullMenu", currentRecipes);
+
+    menu = this.dataMenu;
+    for(dish in menu){
+      if(menu[dish].RecipeID == id){
+        menu.splice(dish, 1);
       }
-      return output;
-  }
-
-  //gets the name of dish in menu
-  this.fullPrice = function() {
-      
-      var output =0.00;
-
-      if(this.menu == 0){
-        output += "0.00";
-      } 
-      if(this.menu != 0){
-        selected = this.menu;
-        for(var i=0; i < selected.length; i++){
-        one = selected[i];
-        output += this.getDishPrice(one);
-        
-        }
-      }
-
-      return output;
-        
-  }
-
-  this.getPrice = function() {
-    
-    
-      var output ='';
-
-      if(this.menu == 0){
-        output += "0.00";
-      } 
-      if(this.menu != 0){
-        selected = this.menu;
-        for(var i=0; i < selected.length; i++){
-        one = selected[i];
-        output += this.getDishPrice(one) + "<br>";
-        
-        }
-      }
-
-      return output;
-  }
-  
-    this.pending = function(dish) {
-      price = 0;
-      var dish = this.getDish(dish);
-      var ingredients = dish.Ingredients;
-
-    for (i=0; i<ingredients.length; i++){
-      var ingredient = Ingredients[i];
-      price += ingredient.Quantity;
     }
 
-    return (price*this.getNumberOfGuests); 
-    
   }
-
-
-
-
 
   this.dishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:20,api_key:'dvxrV2fipnzly1OxypUK685yXpq8i4v1'});
   this.getDish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvxrV2fipnzly1OxypUK685yXpq8i4v1'});

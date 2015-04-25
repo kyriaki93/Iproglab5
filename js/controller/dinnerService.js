@@ -1,14 +1,11 @@
 
 dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
-  
+
   var numberOfGuest = 2;
   this.dataMenu = [];
 
   if ($cookieStore.get("fullMenu") != null) {
     var fullMenu = $cookieStore.get("fullMenu");
-  }
-  else{
-     var fullMenu = 'Pending';
   }
 
   if ($cookieStore.get("numberOfGuests") == null) {
@@ -26,15 +23,17 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
     return numberOfGuest;
   }
 
-  this.removeDishFromMenu = function(id) {
+  this.getPrice = function(dish) {
 
-    // var currentRecipes = $cookieStore.get("fullMenu");
-    // for(recipeID in currentRecipes){
-    //   if(currentRecipes[recipeID] === id){
-    //     currentRecipes.splice(recipeID, 1);
-    //   }
-    // }
-    // $cookieStore.put("fullMenu", currentRecipes);
+      var price = 0;
+        for(ingredient in dish.Ingredients){
+          price += dish.Ingredients[ingredient].Quantity * this.getNumberOfGuests();
+        }
+          return price;
+    
+
+  }
+  this.removeDishFromMenu = function(id) {
 
     menu = this.dataMenu;
     for(dish in menu){

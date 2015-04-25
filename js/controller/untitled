@@ -1,5 +1,0 @@
-
-dinnerPlannerApp.controller('OverviewCtrl', function ($scope, $routeParams, Dinner) {
-  
-
-});

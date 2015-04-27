@@ -10,6 +10,7 @@ $scope.ready = false;
 	   		$scope.ready = true;
 	     	$scope.dish = data;
 
+
 	     	price = 0;
 	     	var ingredients = $scope.dish.Ingredients;
     	 	
@@ -30,7 +31,7 @@ $scope.ready = false;
 	
 	 $scope.confirmDish = function(){
 
-	 	Dinner.dataMenu.push($scope.dish);
+	 	Dinner.addDish($scope.dishId);
 
 	 }
 });

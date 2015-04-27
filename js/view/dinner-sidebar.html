@@ -5,9 +5,9 @@
 			<div class="col-md-2">
 			<h3>My planner</h3>
       		<div>
-          	People: <input type="number" ng-model="numberOfGuests" ng-change="setNumberOfGuest(numberOfGuests)" min="1"/>
+          	People: <input type="number" ng-model="numberOfGuest" ng-change="setNumberOfGuest(numberOfGuest)" min="1"/>
 
-			      Total number of guest: {{numberOfGuests}}
+			      Total number of guest: {{numberOfGuest}}
 
       		</div>
       		<div style="width:100%;padding:5% 0 5% 0;">
@@ -15,11 +15,9 @@
  	  			<div style="width:20%;float:right;background-color:#efefef;">Cost</div>
 	      	</div>
 
-		  	<div style="width:100%;" ng-repeat="dish in fullMenu" >
-				<!--<div style="width:80%;float:left;"  >{{dish.Title}}</div>-->
-				<span class="glyphicon glyphicon-remove clickable" ng-click="removeDish(dish.RecipeID)"></span>{{dish.Title}}
+		  	<div style="width:100%;" ng-repeat="dish in menu" >
+				<span class="glyphicon glyphicon-remove clickable" ng-click="removeDish(dish.RecipeID)" ></span>{{dish.Title}}
     			<div style="width:20%;float:right;" ng-model="dishPrice" >{{dishPrice(dish).toFixed(1)}}</div>
-    			<!--<span class='glyphicon glyphicon-remove clickable' ng-click="removeDish(dish.RecipeID)"></span>-->
 		  	</div>
 		  	<br/><br/>
 			

@@ -1,22 +1,37 @@
 
 dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
 
+  this.dishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:20,api_key:'dvxrV2fipnzly1OxypUK685yXpq8i4v1'});
+  this.getDish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvxrV2fipnzly1OxypUK685yXpq8i4v1'});
+
   var numberOfGuest = 2;
-  this.dataMenu = [];
+  var dataMenu = [];
+  var menu = []
 
-  if ($cookieStore.get("fullMenu") != null) {
-    var fullMenu = $cookieStore.get("fullMenu");
-  }
+   if ($cookieStore.get("fullMenu") != null) {
 
-  if ($cookieStore.get("numberOfGuests") == null) {
-    var numberOfGuests = 2;
+      cookie = $cookieStore.get("fullMenu");
+
+    for(dish in cookie){
+        this.getDish.get({id:cookie[dish]}, function(data){
+
+        menu.push(data);
+
+      });
+    }
+
+    
+
+}
+  if ($cookieStore.get("numberOfGuest") == null) {
+    var numberOfGuest = 2;
   } else {
-    var numberOfGuests = $cookieStore.get("numberOfGuests");
+    var numberOfGuest = $cookieStore.get("numberOfGuest");
   }
 
   this.setNumberOfGuests = function(num) {
     numberOfGuest = num;
-    $cookieStore.put("numberOfGuests", num);
+    $cookieStore.put("numberOfGuest", num);
   }
 
   this.getNumberOfGuests = function() {
@@ -35,17 +50,38 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
   }
   this.removeDishFromMenu = function(id) {
 
-    menu = this.dataMenu;
+    var currentRecipes = $cookieStore.get("fullMenu");
+    console.log(currentRecipes);
+    for(recipeID in currentRecipes){
+      if(currentRecipes[recipeID] == id){
+        console.log(currentRecipes[recipeID]);
+        currentRecipes.splice(recipeID, 1);
+      }
+    }
+    $cookieStore.put("fullMenu", currentRecipes);
+
     for(dish in menu){
-      if(menu[dish].RecipeID == id){
+      if(menu[dish].RecipeID === id){
         menu.splice(dish, 1);
       }
     }
 
   }
 
-  this.dishSearch = $resource('http://api.bigoven.com/recipes',{pg:1,rpp:20,api_key:'dvxrV2fipnzly1OxypUK685yXpq8i4v1'});
-  this.getDish = $resource('http://api.bigoven.com/recipe/:id',{api_key:'dvxrV2fipnzly1OxypUK685yXpq8i4v1'});
+  this.addDish = function(id){
+
+    dataMenu.push(id);
+
+
+    $cookieStore.put("fullMenu", dataMenu);
+    console.log($cookieStore.get("fullMenu"));
+  }
+
+this.getMenu = function(){
+
+  return menu;
+
+}
 
   return this;
 

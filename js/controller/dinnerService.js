@@ -8,21 +8,18 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
   var dataMenu = [];
   var menu = []
 
-   if ($cookieStore.get("fullMenu") != null) {
+   if ($cookieStore.get("fullMenu")) {
 
       cookie = $cookieStore.get("fullMenu");
 
-    for(dish in cookie){
+      for(dish in cookie){
         this.getDish.get({id:cookie[dish]}, function(data){
-
-        menu.push(data);
-
-      });
+          menu.push(data);
+        });
+      }
+      console.log(cookie);
     }
 
-    
-
-}
   if ($cookieStore.get("numberOfGuest") == null) {
     var numberOfGuest = 2;
   } else {
@@ -72,9 +69,16 @@ dinnerPlannerApp.factory('Dinner',function ($resource, $cookieStore) {
 
     dataMenu.push(id);
 
-
+    //put added ID to cookie
     $cookieStore.put("fullMenu", dataMenu);
+
     console.log($cookieStore.get("fullMenu"));
+
+    //push data so that it shows in side-menubar
+    this.getDish.get({id:id}, function(data){
+      menu.push(data);
+    }); 
+     
   }
 
 this.getMenu = function(){

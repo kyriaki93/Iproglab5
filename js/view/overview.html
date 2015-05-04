@@ -11,7 +11,7 @@
 
 <center>
 	<div class="row">
-		<div class='col-md-2' style='margin: 2% 2% 2% 2%' ng-model="fullMenu" ng-repeat="dish in fullMenu">
+		<div class='col-md-2' style='margin: 2% 2% 2% 2%' ng-model="menu" ng-repeat="dish in menu">
 			<center>
 				<h2>{{dish.Title}}</h2>
 				<img width='100%' ng-src="{{dish.ImageURL}}"/>
@@ -20,7 +20,7 @@
 			</center>
 		</div>		
 		<div class="col-md-12">
-			<h2 ng-model="fullPrice" >Total price: {{fullPrice().toFixed(1)}} KR</h2>
+			<h2 ng-model="menu" >Total price: {{fullPrice().toFixed(1)}} KR</h2>
 			<br>
 			<a href="#/print"><button class="btn btn-default" type="submit" id="print">Print full recipe!</button></a>
 		</div>

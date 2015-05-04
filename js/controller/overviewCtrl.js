@@ -1,7 +1,8 @@
 
 dinnerPlannerApp.controller('overviewCtrl', function ($scope, $routeParams, Dinner) {
   
-$scope.fullMenu = Dinner.dataMenu;
+//$scope.fullMenu = Dinner.dataMenu;
+$scope.menu = Dinner.getMenu();
   
     $scope.dishPrice = function(dish){
 
